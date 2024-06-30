@@ -11,15 +11,12 @@ import xlsxwriter
 import time
 
 driver = webdriver.Chrome()
-ROOT = "https://homes.hdb.gov.sg/home/finding-a-flat"
+ROOT = "https://www.propertyguru.com.sg/property-for-sale?sort=price&order=asc"
 in_subpage = False
 
 def scrape_page(driver, start_page, worksheet):
     driver.get(ROOT)
-    time.sleep(3)                                               
-    section = driver.find_element(By.CSS_SELECTOR, "body").find_element(By.CSS_SELECTOR, "div[class='listing-portion']")
-    section = section.find_element(By.CSS_SELECTOR, "div[class='listings']").find_element(By.CSS_SELECTOR, "div[class='container']")
-    section.find_element(By.XPATH, ".//div[4]/app-flat-cards-categories").click()
+    driver.find_element(By.CSS_SELECTOR, "section[id='search-results-container']")
     time.sleep(3)
 
     worksheet.write(0, 0, "Address")
